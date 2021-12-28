@@ -5,8 +5,8 @@
 
 	<groupId>com.ljunggren</groupId>
 	<artifactId>json-utils</artifactId>
-	<packaging>jar</packaging>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
 	<name>json-utils</name>
 	<url>http://maven.apache.org</url>
@@ -21,6 +21,11 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
+			<version>2.13.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
 			<version>2.13.0</version>
 		</dependency>
 		<dependency>

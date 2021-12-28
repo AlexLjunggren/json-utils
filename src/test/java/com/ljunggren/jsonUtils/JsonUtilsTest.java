@@ -83,5 +83,21 @@ public class JsonUtilsTest {
     public void isValidFalseTest() {
         assertFalse(JsonUtils.isValid("{\"name\":\""));
     }
+    
+    @Test
+    public void equalTest() throws JsonProcessingException {
+        User user = new User("Alex", 40, true);
+        String expected = "{\"name\":\"Alex\",\"age\":40,\"active\":true}";
+        String actual = JsonUtils.objectToJson(user);
+        assertTrue(JsonUtils.equal(expected, actual));
+    }
+
+    @Test
+    public void equalFalseTest() throws JsonProcessingException {
+        User user = new User("Alex", 40, true);
+        String expected = "{\"name\":\"Alexander\",\"age\":40,\"active\":true}";
+        String actual = JsonUtils.objectToJson(user);
+        assertFalse(JsonUtils.equal(expected, actual));
+    }
 
 }
