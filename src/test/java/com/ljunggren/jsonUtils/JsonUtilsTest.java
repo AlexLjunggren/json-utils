@@ -89,7 +89,7 @@ public class JsonUtilsTest {
         User user = new User("Alex", 40, true);
         String expected = "{\"name\":\"Alex\",\"age\":40,\"active\":true}";
         String actual = JsonUtils.objectToJson(user);
-        assertTrue(JsonUtils.equal(expected, actual));
+        assertTrue(JsonUtils.areEqual(expected, actual));
     }
 
     @Test
@@ -97,7 +97,7 @@ public class JsonUtilsTest {
         User user = new User("Alex", 40, true);
         String expected = "{\"name\":\"Alexander\",\"age\":40,\"active\":true}";
         String actual = JsonUtils.objectToJson(user);
-        assertFalse(JsonUtils.equal(expected, actual));
+        assertFalse(JsonUtils.areEqual(expected, actual));
     }
 
 }

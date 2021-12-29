@@ -38,7 +38,7 @@ public class JsonUtils {
         }
     }
     
-    public static boolean equal(String json1, String json2) throws JsonMappingException, JsonProcessingException {
+    public static boolean areEqual(String json1, String json2) throws JsonMappingException, JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         return mapper.readTree(json1).equals(mapper.readTree(json2));
     }
