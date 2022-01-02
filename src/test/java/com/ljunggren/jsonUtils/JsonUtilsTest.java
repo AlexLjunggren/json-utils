@@ -85,7 +85,7 @@ public class JsonUtilsTest {
     }
     
     @Test
-    public void equalTest() throws JsonProcessingException {
+    public void areEqualTest() throws JsonProcessingException {
         User user = new User("Alex", 40, true);
         String expected = "{\"name\":\"Alex\",\"age\":40,\"active\":true}";
         String actual = JsonUtils.objectToJson(user);
@@ -93,7 +93,7 @@ public class JsonUtilsTest {
     }
 
     @Test
-    public void equalFalseTest() throws JsonProcessingException {
+    public void areEqualFalseTest() throws JsonProcessingException {
         User user = new User("Alex", 40, true);
         String expected = "{\"name\":\"Alexander\",\"age\":40,\"active\":true}";
         String actual = JsonUtils.objectToJson(user);
