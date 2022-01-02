@@ -26,7 +26,7 @@ JSON to Array
 MyClass[] myArray = JsonUtils.jsonToArray(json, MyClass.class);
 ```
 
-Validate String is a valid JSON
+Check if String is a valid JSON
 
 ```java
 JsonUtils.isValid(json);
