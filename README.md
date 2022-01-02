@@ -1,4 +1,4 @@
-## Json Utils ##
+## JSON Utils ##
 
 A collection of useful JSON utilities.
 
