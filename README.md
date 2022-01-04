@@ -8,6 +8,12 @@ Object to JSON
 String json = JsonUtils.objectToJson(myObject);
 ```
 
+Object to pretty printed JSON
+
+```java
+String prettyPrinted = JsonUtils.prettyPrint(myObject);
+```
+
 JSON to Object
 
 ```java

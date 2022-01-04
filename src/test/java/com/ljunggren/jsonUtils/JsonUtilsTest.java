@@ -38,6 +38,19 @@ public class JsonUtilsTest {
     }
     
     @Test
+    public void prettyPrintTest() throws JsonProcessingException {
+        User user = new User("Alex", 40, true);
+        String expected = "{\r\n"
+                + "  \"name\" : \"Alex\",\r\n"
+                + "  \"age\" : 40,\r\n"
+                + "  \"active\" : true\r\n"
+                + "}"
+                + "";
+        String actual = JsonUtils.prettyPrint(user);
+        assertEquals(expected, actual);
+    }
+    
+    @Test
     public void jsonToObjectTest() throws JsonProcessingException {
         User user = new User("Alex", 40, true);
         String json = JsonUtils.objectToJson(user);

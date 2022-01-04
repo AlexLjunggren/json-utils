@@ -6,11 +6,22 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class JsonUtils {
 
     public static String objectToJson(Object object) throws JsonProcessingException {
-        return new ObjectMapper().writeValueAsString(object);
+        return objectToJson(object, new ObjectMapper());
+    }
+    
+    public static String prettyPrint(Object object) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        return objectToJson(object, mapper);
+    }
+    
+    private static String objectToJson(Object object, ObjectMapper mapper) throws JsonProcessingException {
+        return mapper.writeValueAsString(object);
     }
     
     public static <T> T jsonToObject(String json, Class<T> clazz) throws JsonMappingException, JsonProcessingException {
