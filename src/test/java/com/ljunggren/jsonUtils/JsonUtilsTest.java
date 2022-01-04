@@ -6,7 +6,9 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -78,6 +80,16 @@ public class JsonUtilsTest {
         String json = JsonUtils.objectToJson(users);
         User[] generatedUsers = JsonUtils.jsonToArray(json, User.class);
         assertArrayEquals(users, generatedUsers);
+    }
+    
+    @Test
+    public void jsonToHashMapTest() throws JsonProcessingException {
+        Map<String, User> map = new HashMap<>();
+        map.put("Employee", new User("Alex", 40, true));
+        map.put("Boss",new User("James", 10, false));
+        String json = JsonUtils.objectToJson(map);
+        Map<String, User> generatedMap = JsonUtils.jsonToHashMap(json, String.class, User.class);
+        assertEquals(map, generatedMap);
     }
     
     @Test

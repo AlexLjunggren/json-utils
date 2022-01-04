@@ -1,6 +1,8 @@
 package com.ljunggren.jsonUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;
@@ -37,6 +39,12 @@ public class JsonUtils {
     public static <T> T[] jsonToArray(String json, Class<T> clazz) throws JsonMappingException, JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         JavaType type = mapper.getTypeFactory().constructArrayType(clazz);
+        return mapper.readValue(json, type);
+    }
+    
+    public static <K, V> Map<K, V> jsonToHashMap(String json, Class<K> keyClass, Class<V> valueClass) throws JsonMappingException, JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        JavaType type = mapper.getTypeFactory().constructMapType(HashMap.class, keyClass, valueClass);
         return mapper.readValue(json, type);
     }
     
