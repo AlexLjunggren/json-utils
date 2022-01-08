@@ -35,7 +35,7 @@ MyClass[] myArray = JsonUtils.jsonToArray(json, MyClass.class);
 JSON to HashMap
 
 ```java
-Map<String, User> map = JsonUtils.jsonToHashMap(json, String.class, User.class);
+Map<String, MyClass> map = JsonUtils.jsonToHashMap(json, String.class, MyClass.class);
 ```
 
 Check if String is a valid JSON

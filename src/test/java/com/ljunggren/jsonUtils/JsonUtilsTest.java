@@ -28,7 +28,6 @@ public class JsonUtilsTest {
         private String name;
         private int age;
         private boolean active;
-        
     }
 
     @Test
