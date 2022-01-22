@@ -1,4 +1,4 @@
-package com.ljunggren.jsonUtils;
+package io.ljunggren.jsonUtils;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
