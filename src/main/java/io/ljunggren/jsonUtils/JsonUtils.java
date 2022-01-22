@@ -1,4 +1,4 @@
-package com.ljunggren.jsonUtils;
+package io.ljunggren.jsonUtils;
 
 import java.util.HashMap;
 import java.util.List;
