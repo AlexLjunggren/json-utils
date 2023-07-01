@@ -6,6 +6,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -128,6 +129,22 @@ public class JsonUtilsTest {
         String expected = "{\"name\":\"Alexander\",\"age\":40,\"active\":true}";
         String actual = JsonUtils.objectToJson(user);
         assertFalse(JsonUtils.areEqual(expected, actual));
+    }
+    
+    @Test
+    public void toCSVTest() throws IOException {
+        String input = "[{\"name\":\"Alexander\",\"age\":40,\"active\":true}]";
+        String expected = "name,age,active\nAlexander,40,true\n";
+        String actual =JsonUtils.toCSV(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void toCSVWithDelimiterTest() throws IOException {
+        String input = "[{\"name\":\"Alexander\",\"age\":40,\"active\":true}]";
+        String expected = "name|age|active\nAlexander|40|true\n";
+        String actual =JsonUtils.toCSV(input, '|');
+        assertEquals(expected, actual);
     }
 
 }
