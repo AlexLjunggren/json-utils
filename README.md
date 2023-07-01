@@ -51,3 +51,18 @@ JsonUtils.areEqual(json1, json2);
 ```
 **Note:** Ignores carriage returns, line feeds, tabs, etc.
 
+Convert to CSV
+
+```java
+String csv = JsonUtils.toCSV(json); 
+```
+
+**Note:** JSON must be an array of objects.
+
+Convert to CSV with defined delimiter
+
+```java
+String csv = JsonUtils.toCSV(json, '|'); 
+```
+
+**Note:** JSON must be an array of objects and delimiter must be a character.

@@ -1,6 +1,5 @@
 package io.ljunggren.jsonUtils;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -68,16 +67,23 @@ public class JsonUtils {
         return mapper.readTree(json1).equals(mapper.readTree(json2));
     }
     
-    public static void toCSV(String input, String output) throws IOException {
-        JsonNode jsonTree = new ObjectMapper().readTree(new File(input));
+    public static String toCSV(String input) throws IOException {
+        return toCSV(input, ',');
+    }
+    
+    public static String toCSV(String input, char delimiter) throws IOException {
+        JsonNode jsonTree = new ObjectMapper().readTree(input);
         Builder csvSchemaBuilder = CsvSchema.builder();
         JsonNode firstObject = jsonTree.elements().next();
         firstObject.fieldNames().forEachRemaining(fieldName -> csvSchemaBuilder.addColumn(fieldName));
-        CsvSchema csvSchema = csvSchemaBuilder.build().withHeader();
+        CsvSchema csvSchema = csvSchemaBuilder.build()
+                .withHeader()
+                .withColumnSeparator(delimiter)
+                .withoutQuoteChar();
         CsvMapper csvMapper = new CsvMapper();
-        csvMapper.writerFor(JsonNode.class)
-          .with(csvSchema)
-          .writeValue(new File(output), jsonTree);
+        return csvMapper.writerFor(JsonNode.class)
+                .with(csvSchema)
+                .writeValueAsString(jsonTree);
     }
     
 }

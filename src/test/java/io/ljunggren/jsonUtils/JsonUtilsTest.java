@@ -133,9 +133,18 @@ public class JsonUtilsTest {
     
     @Test
     public void toCSVTest() throws IOException {
-        String input = "C:\\tmp\\nhtsa_response_extra.json";
-        String output = "C:\\tmp\\nhtsa_response_extra.csv";
-        JsonUtils.toCSV(input, output);
+        String input = "[{\"name\":\"Alexander\",\"age\":40,\"active\":true}]";
+        String expected = "name,age,active\nAlexander,40,true\n";
+        String actual =JsonUtils.toCSV(input);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void toCSVWithDelimiterTest() throws IOException {
+        String input = "[{\"name\":\"Alexander\",\"age\":40,\"active\":true}]";
+        String expected = "name|age|active\nAlexander|40|true\n";
+        String actual =JsonUtils.toCSV(input, '|');
+        assertEquals(expected, actual);
     }
 
 }
