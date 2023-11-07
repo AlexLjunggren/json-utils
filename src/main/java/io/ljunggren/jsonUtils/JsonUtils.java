@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema.Builder;
+import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
 public class JsonUtils {
 
@@ -24,6 +25,9 @@ public class JsonUtils {
     public static String prettyPrint(Object object) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        if (object instanceof String) {
+            return objectToJson(JsonUtils.jsonToObject((String) object, Object.class), mapper);
+        }
         return objectToJson(object, mapper);
     }
     
@@ -84,6 +88,11 @@ public class JsonUtils {
         return csvMapper.writerFor(JsonNode.class)
                 .with(csvSchema)
                 .writeValueAsString(jsonTree);
+    }
+    
+    public static String toYAML(String json) throws JsonMappingException, JsonProcessingException {
+        JsonNode jsonNodeTree = new ObjectMapper().readTree(json);
+        return new YAMLMapper().writeValueAsString(jsonNodeTree);
     }
     
 }

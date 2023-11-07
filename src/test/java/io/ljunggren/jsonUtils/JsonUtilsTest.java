@@ -59,6 +59,19 @@ public class JsonUtilsTest {
     }
     
     @Test
+    public void prettyPrintStringTest() throws JsonProcessingException {
+        String json = "{\"name\" : \"Alex\", \"age\" : 40, \"active\" : true}";
+        String expected = "{\r\n"
+                + "  \"name\" : \"Alex\",\r\n"
+                + "  \"age\" : 40,\r\n"
+                + "  \"active\" : true\r\n"
+                + "}"
+                + "";
+        String actual = JsonUtils.prettyPrint(json);
+        assertEquals(expected, actual);
+    }
+    
+    @Test
     public void jsonToObjectTest() throws JsonProcessingException {
         User user = new User("Alex", 40, true);
         String json = JsonUtils.objectToJson(user);
@@ -135,7 +148,7 @@ public class JsonUtilsTest {
     public void toCSVTest() throws IOException {
         String input = "[{\"name\":\"Alexander\",\"age\":40,\"active\":true}]";
         String expected = "name,age,active\nAlexander,40,true\n";
-        String actual =JsonUtils.toCSV(input);
+        String actual = JsonUtils.toCSV(input);
         assertEquals(expected, actual);
     }
 
@@ -143,7 +156,19 @@ public class JsonUtilsTest {
     public void toCSVWithDelimiterTest() throws IOException {
         String input = "[{\"name\":\"Alexander\",\"age\":40,\"active\":true}]";
         String expected = "name|age|active\nAlexander|40|true\n";
-        String actual =JsonUtils.toCSV(input, '|');
+        String actual = JsonUtils.toCSV(input, '|');
+        assertEquals(expected, actual);
+    }
+    
+    @Test
+    public void toYAMLTest() throws JsonProcessingException {
+        User user = new User("Alex", 40, true);
+        String json = JsonUtils.objectToJson(user);
+        String expected = "---\n"
+                + "name: \"Alex\"\n"
+                + "age: 40\n"
+                + "active: true\n";
+        String actual = JsonUtils.toYAML(json);
         assertEquals(expected, actual);
     }
 

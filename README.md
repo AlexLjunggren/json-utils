@@ -66,3 +66,9 @@ String csv = JsonUtils.toCSV(json, '|');
 ```
 
 **Note:** JSON must be an array of objects and delimiter must be a character.
+
+JSON to YAML
+
+```java
+String yaml = JsonUtils.toYAML(json);
+```
